@@ -101,6 +101,8 @@ const runProgram = async () => {
     } else if (action === '4') {
         console.log('Delete Customer');
         await deleteCustomer();
+    } else if (action === '5') {
+        console.log('Exiting the program...')
     }
 };
 
