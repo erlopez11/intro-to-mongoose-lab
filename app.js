@@ -18,7 +18,7 @@ const connect = async () => {
 
     // Call the runQueries function, which will eventually hold functions to work
     // with data in our db.
-    await runQueries()
+    await runProgram()
 
     // Disconnect our app from MongoDB after our queries run.
     await mongoose.disconnect();
@@ -38,21 +38,27 @@ const createCustomer = async () => {
     let age = prompt('What is the customer age?');
     customerData.name = name;
     customerData.age = age;
-    console.log(customerData);
 
     const customer = await Customer.create(customerData);
+    console.log('Customer creation successful')
     console.log('New Customer', customer);
 
 };
 
 const findCustomer = async () => {
-    const customer = await Customer.find({});
-    console.log('Here are all the customers:', customer);
-}
+    const customers = await Customer.find({});
+    customers.forEach((customer) => {
+        console.log(`Id: ${customer.id} --Name: ${customer.name} --Age: ${customer.age}`);
+    })
+};
+
+const updateCustomer = async () => {
+
+};
 
 
-const runQueries = async () => {
-    console.log('Queries running.')
+const runProgram = async () => {
+    
     let actionsList = [
         { option: '1. Create a customer' },
         { option: '2. View all customers' },
@@ -74,6 +80,6 @@ const runQueries = async () => {
     }
 };
 
-connect()
+connect();
 /*------------------------------ Query Functions -----------------------------*/
 
