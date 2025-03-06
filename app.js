@@ -33,7 +33,6 @@ const connect = async () => {
 const createCustomer = async () => {
     const customerData = {};
 
-    console.log('Create a new customer');
     let name = prompt('What is the customer name?');
     let age = prompt('What is the customer age?');
     customerData.name = name;
@@ -53,7 +52,16 @@ const findCustomer = async () => {
 };
 
 const updateCustomer = async () => {
+    await findCustomer();
+    const id = prompt('What is the id number of the customer you would like to update?');
+    const name = prompt('What is the new name? If it stays the same enter the current name.');
+    const age = prompt('What is the new age? If it stays the same enter the current name.')
 
+    const updateCustomer = await Customer.findByIdAndUpdate(
+        id,
+        {name, age},
+    )
+    console.log('Customer Update Successful');
 };
 
 
@@ -74,9 +82,14 @@ const runProgram = async () => {
 
     // The functions calls to run queries in our db will go here as we write them.
     if (action === '1') {
+        console.log('Create a New Customer');
         await createCustomer();
     } else if (action === '2') {
+        console.log('Find Customers');
         await findCustomer();
+    } else if (action === '3') {
+        console.log('Update Customer');
+        await updateCustomer();
     }
 };
 
