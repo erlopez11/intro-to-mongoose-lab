@@ -45,6 +45,11 @@ const createCustomer = async () => {
 
 };
 
+const findCustomer = async () => {
+    const customer = await Customer.find({});
+    console.log('Here are all the customers:', customer);
+}
+
 
 const runQueries = async () => {
     console.log('Queries running.')
@@ -64,6 +69,8 @@ const runQueries = async () => {
     // The functions calls to run queries in our db will go here as we write them.
     if (action === '1') {
         await createCustomer();
+    } else if (action === '2') {
+        await findCustomer();
     }
 };
 
