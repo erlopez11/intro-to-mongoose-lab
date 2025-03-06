@@ -31,8 +31,19 @@ const connect = async () => {
 //CRUD Methods
 
 const createCustomer = async () => {
+    const customerData = {};
+
+    console.log('Create a new customer');
+    let name = prompt('What is the customer name?');
+    let age = prompt('What is the customer age?');
+    customerData.name = name;
+    customerData.age = age;
+    console.log(customerData);
+
+    const customer = await Customer.create(customerData);
+    console.log('New Customer', customer);
     
-}
+};
 
 
 
@@ -50,7 +61,7 @@ function actionPrompt() {
     console.log('What would you like to do?');
     actionsList.forEach(item => {console.log(item.option)});
     const action = prompt('Number of action to run:');
-    console.log(`You chose action number ${action}`);
+    
 }
 
 actionPrompt();
@@ -58,6 +69,7 @@ actionPrompt();
 const runQueries = async () => {
   console.log('Queries running.')
   // The functions calls to run queries in our db will go here as we write them.
+  await createCustomer();
 };
 
 connect()
