@@ -64,6 +64,14 @@ const updateCustomer = async () => {
     console.log('Customer Update Successful');
 };
 
+const deleteCustomer = async () => {
+    await findCustomer();
+    const id = prompt('Enter the id number of the customer you would like to delete:')
+
+    await Customer.findByIdAndDelete(id);
+    console.log('Customer deletion was successful');
+
+}
 
 const runProgram = async () => {
     
@@ -90,6 +98,9 @@ const runProgram = async () => {
     } else if (action === '3') {
         console.log('Update Customer');
         await updateCustomer();
+    } else if (action === '4') {
+        console.log('Delete Customer');
+        await deleteCustomer();
     }
 };
 
